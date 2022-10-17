@@ -1,8 +1,7 @@
 # party-operator
-// TODO(user): Add simple overview of use/purpose
 
 ## Description
-// TODO(user): An in-depth paragraph about your project and overview of use
+The project is just to have fun testing the reliability of the upgrade. The first target is [zalando/patroni](https://github.com/zalando/patroni) but maybe it will be more generic in the future.
 
 ## Getting Started
 You’ll need a Kubernetes cluster to run against. You can use [KIND](https://sigs.k8s.io/kind) to get a local cluster for testing, or run against a remote cluster.
@@ -22,10 +21,16 @@ make docker-build docker-push IMG=<some-registry>/party-operator:tag
 ```
 	
 3. Deploy the controller to the cluster with the image specified by `IMG`:
-
-```sh
-make deploy IMG=<some-registry>/party-operator:tag
-```
+    
+    a. using helm: 
+    ```sh
+    helm install party party-operator-0.1.0.tgz --set=image.repository=<some-registry>/party-operator --set=image.tag=tag
+    ```
+    
+    b. using make and kustomize: 
+    ```sh
+    make deploy IMG=<some-registry>/party-operator:tag
+    ```
 
 ### Uninstall CRDs
 To delete the CRDs from the cluster:
@@ -37,12 +42,15 @@ make uninstall
 ### Undeploy controller
 UnDeploy the controller to the cluster:
 
-```sh
-make undeploy
-```
+ a. using helm: 
+ ```sh
+ helm uninstall party
+ ```
 
-## Contributing
-// TODO(user): Add detailed information on how you would like others to contribute to this project
+ b. using make and kustomize: 
+ ```sh
+ make undeploy
+ ```
 
 ### How it works
 This project aims to follow the Kubernetes [Operator pattern](https://kubernetes.io/docs/concepts/extend-kubernetes/operator/)
