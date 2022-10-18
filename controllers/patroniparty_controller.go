@@ -54,7 +54,7 @@ var (
 	participantAnnotation     = apiGroup + "/" + participantLabel
 	currentImageAnnotation    = apiGroup + "/current-image"
 	upgradeScheduleAnnotation = apiGroup + "/upgrade-schedule"
-	finalizerName             = apiGroup + "/finalizer"
+	finalizerName             = apiGroup + "/janitor"
 )
 
 // PatroniPartyReconciler reconciles a PatroniParty object
