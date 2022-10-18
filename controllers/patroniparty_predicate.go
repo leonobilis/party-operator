@@ -17,6 +17,8 @@ limitations under the License.
 package controllers
 
 import (
+	"reflect"
+
 	"sigs.k8s.io/controller-runtime/pkg/event"
 	"sigs.k8s.io/controller-runtime/pkg/log"
 	"sigs.k8s.io/controller-runtime/pkg/predicate"
@@ -41,8 +43,7 @@ func (PatroniPartyPredicate) Update(e event.UpdateEvent) bool {
 
 	if _, ok := e.ObjectNew.GetAnnotations()[partyAnnotation]; ok {
 		// This is Patroni StatefulSet
-		// return reflect.DeepEqual(e.ObjectNew.GetAnnotations(), e.ObjectOld.GetAnnotations()) && reflect.DeepEqual(e.ObjectNew.GetLabels(), e.ObjectOld.GetLabels())
-		return true
+		return reflect.DeepEqual(e.ObjectNew.GetAnnotations(), e.ObjectOld.GetAnnotations()) && reflect.DeepEqual(e.ObjectNew.GetLabels(), e.ObjectOld.GetLabels())
 	}
 
 	// This is PatroniParty Object
